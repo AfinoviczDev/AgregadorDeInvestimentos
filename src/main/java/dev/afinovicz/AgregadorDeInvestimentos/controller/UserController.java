@@ -1,13 +1,12 @@
 package dev.afinovicz.AgregadorDeInvestimentos.controller;
 
 import dev.afinovicz.AgregadorDeInvestimentos.dtos.CreateUserDTO;
+import dev.afinovicz.AgregadorDeInvestimentos.entity.User;
 import dev.afinovicz.AgregadorDeInvestimentos.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/users")
@@ -18,7 +17,13 @@ public class UserController {
 
     @PostMapping
     public void createUser(@RequestBody CreateUserDTO createUserDTO) {
-        userService.createUser(createUserDTO);
+      userService.createUser(createUserDTO);
+    }
+
+    @GetMapping("/{id}")
+    public Optional<User> findUserById(@PathVariable Long id) {
+        var user = userService.getUserById(id);
+        return user;
     }
 
 }
