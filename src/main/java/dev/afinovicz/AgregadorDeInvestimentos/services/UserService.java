@@ -1,12 +1,11 @@
 package dev.afinovicz.AgregadorDeInvestimentos.services;
 
+import dev.afinovicz.AgregadorDeInvestimentos.exception.NotFoundException;
 import dev.afinovicz.AgregadorDeInvestimentos.dtos.CreateUserDTO;
 import dev.afinovicz.AgregadorDeInvestimentos.entity.User;
 import dev.afinovicz.AgregadorDeInvestimentos.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,8 +21,9 @@ public class UserService {
                 .build());
     }
 
-    public Optional<User> getUserById(Long id) {
-        var user = userRepository.findById(id);
+    public User getUserById(Long id) throws NotFoundException {
+        var user = userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Usuário não encontrado!"));
         return user;
     }
 

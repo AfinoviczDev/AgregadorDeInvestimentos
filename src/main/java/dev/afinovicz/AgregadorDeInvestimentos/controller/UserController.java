@@ -1,12 +1,11 @@
 package dev.afinovicz.AgregadorDeInvestimentos.controller;
 
+import dev.afinovicz.AgregadorDeInvestimentos.exception.NotFoundException;
 import dev.afinovicz.AgregadorDeInvestimentos.dtos.CreateUserDTO;
 import dev.afinovicz.AgregadorDeInvestimentos.entity.User;
 import dev.afinovicz.AgregadorDeInvestimentos.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/users")
@@ -21,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public Optional<User> findUserById(@PathVariable Long id) {
+    public User findUserById(@PathVariable Long id) throws NotFoundException {
         var user = userService.getUserById(id);
         return user;
     }
