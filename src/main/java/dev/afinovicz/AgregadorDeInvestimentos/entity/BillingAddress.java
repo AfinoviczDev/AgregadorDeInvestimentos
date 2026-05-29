@@ -20,7 +20,7 @@ public class BillingAddress {
     @Column(name = "number")
     private Integer number;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
     @MapsId
     private Account account;

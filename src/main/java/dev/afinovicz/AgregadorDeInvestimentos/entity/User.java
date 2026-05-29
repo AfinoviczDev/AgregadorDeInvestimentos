@@ -1,5 +1,6 @@
 package dev.afinovicz.AgregadorDeInvestimentos.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

@@ -1,5 +1,7 @@
 package dev.afinovicz.AgregadorDeInvestimentos.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,9 +25,10 @@ public class Account {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
-    @OneToOne(mappedBy = "account")
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "account")
     @PrimaryKeyJoinColumn
     private BillingAddress billingAddress;
 

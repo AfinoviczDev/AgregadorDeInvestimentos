@@ -1,5 +1,6 @@
 package dev.afinovicz.AgregadorDeInvestimentos.controller;
 
+import dev.afinovicz.AgregadorDeInvestimentos.dtos.CreateAccountDTO;
 import dev.afinovicz.AgregadorDeInvestimentos.dtos.UpdateUserDTO;
 import dev.afinovicz.AgregadorDeInvestimentos.exception.NotFoundException;
 import dev.afinovicz.AgregadorDeInvestimentos.dtos.CreateUserDTO;
@@ -49,4 +50,13 @@ public class UserController {
                                @RequestBody UpdateUserDTO updateUserDTO) throws NotFoundException {
         userService.updateUserById(id, updateUserDTO);
     }
+
+    @PostMapping("/{id}/accounts")
+    public void createAccount(@PathVariable Long id,
+                              @RequestBody CreateAccountDTO createAccountDTO) throws NotFoundException {
+        userService.createAccount(id, createAccountDTO);
+    }
+
+
+
 }
