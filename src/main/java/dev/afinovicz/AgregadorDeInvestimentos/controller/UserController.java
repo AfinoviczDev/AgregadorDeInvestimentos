@@ -44,6 +44,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateUserById(@PathVariable Long id,
                                @RequestBody UpdateUserDTO updateUserDTO) throws NotFoundException {
         userService.updateUserById(id, updateUserDTO);

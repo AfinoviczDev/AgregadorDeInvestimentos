@@ -16,8 +16,8 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public void createUser(CreateUserDTO createUserDTO) {
-        userRepository.save(User.builder()
+    public User createUser(CreateUserDTO createUserDTO) {
+        return userRepository.save(User.builder()
                 .username(createUserDTO.username())
                 .email(createUserDTO.email())
                 .password(createUserDTO.password())
