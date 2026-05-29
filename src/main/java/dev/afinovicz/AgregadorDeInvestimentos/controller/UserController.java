@@ -36,4 +36,10 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUserById(@PathVariable Long id) throws NotFoundException {
+        userService.deleteUserById(id);
+    }
+
 }

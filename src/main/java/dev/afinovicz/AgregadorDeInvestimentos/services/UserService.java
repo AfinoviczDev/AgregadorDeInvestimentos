@@ -33,5 +33,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public void deleteUserById(Long id) throws NotFoundException {
+        var user = userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Usuário não encontrado!"));
+        userRepository.deleteById(user.getId());
+    }
+
 
 }
