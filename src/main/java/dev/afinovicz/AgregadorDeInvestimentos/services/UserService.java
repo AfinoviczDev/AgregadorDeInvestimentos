@@ -1,5 +1,6 @@
 package dev.afinovicz.AgregadorDeInvestimentos.services;
 
+import dev.afinovicz.AgregadorDeInvestimentos.dtos.UpdateUserDTO;
 import dev.afinovicz.AgregadorDeInvestimentos.exception.NotFoundException;
 import dev.afinovicz.AgregadorDeInvestimentos.dtos.CreateUserDTO;
 import dev.afinovicz.AgregadorDeInvestimentos.entity.User;
@@ -37,6 +38,26 @@ public class UserService {
         var user = userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Usuário não encontrado!"));
         userRepository.deleteById(user.getId());
+    }
+
+    public void updateUserById(Long id,
+                               UpdateUserDTO updateUserDTO) throws NotFoundException {
+         var userEntity = userRepository.findById(id);
+         if(userEntity.isPresent()) {
+             var user = userEntity.get();
+             if(updateUserDTO.username() != null) {
+                 user.setUsername(updateUserDTO.username());
+             }
+             if(updateUserDTO.password() != null) {
+                 user.setPassword(updateUserDTO.password());
+             }
+             userRepository.save(user);
+         }
+         else {
+            throw new NotFoundException("Usuário não existe!");
+         }
+
+
     }
 
 

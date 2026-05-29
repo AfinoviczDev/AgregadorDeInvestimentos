@@ -1,5 +1,6 @@
 package dev.afinovicz.AgregadorDeInvestimentos.controller;
 
+import dev.afinovicz.AgregadorDeInvestimentos.dtos.UpdateUserDTO;
 import dev.afinovicz.AgregadorDeInvestimentos.exception.NotFoundException;
 import dev.afinovicz.AgregadorDeInvestimentos.dtos.CreateUserDTO;
 import dev.afinovicz.AgregadorDeInvestimentos.entity.User;
@@ -42,4 +43,9 @@ public class UserController {
         userService.deleteUserById(id);
     }
 
+    @PutMapping("/{id}")
+    public void updateUserById(@PathVariable Long id,
+                               @RequestBody UpdateUserDTO updateUserDTO) throws NotFoundException {
+        userService.updateUserById(id, updateUserDTO);
+    }
 }
