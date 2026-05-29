@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_users")
@@ -25,9 +26,11 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
-
     @CreationTimestamp
     private Instant creationTimestamp;
     @UpdateTimestamp
     private Instant updateTimestamp;
+
+    @OneToMany(mappedBy = "user")
+    private List<Account> accounts;
 }

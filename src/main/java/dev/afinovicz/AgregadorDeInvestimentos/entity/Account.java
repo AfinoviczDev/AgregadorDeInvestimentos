@@ -18,4 +18,8 @@ public class Account {
     private Long accountId;
     @Column(name = "description")
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
