@@ -1,9 +1,6 @@
 package dev.afinovicz.AgregadorDeInvestimentos.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -16,9 +13,15 @@ import lombok.*;
 public class BillingAddress {
 
     @Id
+    @Column(name = "account_id")
     private Long id;
     @Column(name = "street")
     private String street;
     @Column(name = "number")
     private Integer number;
+
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    @MapsId
+    private Account account;
 }
