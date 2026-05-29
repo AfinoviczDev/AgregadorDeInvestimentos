@@ -7,6 +7,8 @@ import dev.afinovicz.AgregadorDeInvestimentos.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -25,6 +27,10 @@ public class UserService {
         var user = userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Usuário não encontrado!"));
         return user;
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
 
