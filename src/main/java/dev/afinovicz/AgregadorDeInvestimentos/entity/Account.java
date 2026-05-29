@@ -3,6 +3,8 @@ package dev.afinovicz.AgregadorDeInvestimentos.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_accounts")
 @AllArgsConstructor
@@ -26,4 +28,7 @@ public class Account {
     @OneToOne(mappedBy = "account")
     @PrimaryKeyJoinColumn
     private BillingAddress billingAddress;
+
+    @OneToMany(mappedBy = "account")
+    private List<AccountStock> accountStocks;
 }
